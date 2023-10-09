@@ -6,6 +6,22 @@ app = Flask(__name__)
 
 # == Your Routes Here ==
 
+# Returns hello + <name>
+# Try it:
+#   ; curl "http://localhost:5001/greet?name=David"
+@app.route('/greet', methods=['GET'])
+def hello():
+    name = request.args['name'] 
+    # Send back a friendly greeting with the name
+    return f"Hello {name}!\n"
+
+# Try it: curl -X POST -d "person=kay" "http://localhost:5001/hello"
+@app.route('/hello', methods=['POST'])
+def post_greet():
+    name = request.form['person']
+    return f"Hello {name}!\n"
+
+
 # == Example Code Below ==
 
 # GET /emoji
