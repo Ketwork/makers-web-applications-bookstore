@@ -15,11 +15,20 @@ def hello():
     # Send back a friendly greeting with the name
     return f"Hello {name}!\n"
 
+# Note: body parameters cannot go in the url like in the above example
 # Try it: curl -X POST -d "person=kay" "http://localhost:5001/hello"
 @app.route('/hello', methods=['POST'])
 def post_greet():
     name = request.form['person']
     return f"Hello {name}!\n"
+
+# Try it: curl -X POST -d "person=Ket&message=Hello World" "http://localhost:5001/hello_web"
+@app.route('/hello_web', methods=['POST'])
+def hello_web():
+    name = request.form['person']
+    message = request.form['message']
+    return f"Thanks {name}, you sent this message: {message}\n"
+
 
 
 # == Example Code Below ==
