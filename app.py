@@ -44,6 +44,21 @@ def count_vowels():
             count += 1
     return F'There are {count} vowels in "{text}"'
 
+@app.route('/sort-names', methods=['POST'])
+def sort_names():
+    if 'names' not in request.form:
+        return "You didn't submit any names!", 400
+    names = request.form['names'].split(',')
+    sorted_names = sorted(names)
+    return ','.join(sorted_names)
+
+@app.route('/names', methods=['GET'])
+def add_name():
+    current_list = "Julia, Alice, Karim"
+    name = request.args['add']
+    return f"{current_list}, {name}"
+
+
 
 # == Example Code Below ==
 
