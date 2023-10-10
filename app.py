@@ -22,18 +22,27 @@ def post_greet():
     name = request.form['person']
     return f"Hello {name}!\n"
 
-# Try it: curl -X POST -d "person=Ket&message=Hello World" "http://localhost:5001/hello_web"
-@app.route('/hello_web', methods=['POST'])
+# Try it: curl -X POST -d "name=Ket&message=Hello World" "http://localhost:5001/submit"
+@app.route('/submit', methods=['POST'])
 def hello_web():
-    name = request.form['person']
+    name = request.form['name']
     message = request.form['message']
-    return f"Thanks {name}, you sent this message: {message}\n"
+    return f'Thanks {name}, you sent this message: "{message}"'
 
 #  curl "http://localhost:5001/wave?name=Ket"
 @app.route('/wave', methods=['GET'])
 def wave():
     name = request.args['name']
-    return f"Hello {name}!\n"
+    return f"I am waving at {name}"
+
+@app.route('/count_vowels', methods=['POST'])
+def count_vowels():
+    count = 0
+    text = request.form['text']
+    for character in text:
+        if character in "aeiou":
+            count += 1
+    return F'There are {count} vowels in "{text}"'
 
 
 # == Example Code Below ==
