@@ -29,6 +29,11 @@ def hello_web():
     message = request.form['message']
     return f"Thanks {name}, you sent this message: {message}\n"
 
+#  curl "http://localhost:5001/wave?name=Ket"
+@app.route('/wave', methods=['GET'])
+def wave():
+    name = request.args['name']
+    return f"Hello {name}!\n"
 
 
 # == Example Code Below ==
